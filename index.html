@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evrost | Portfolio Monteur Vidéo</title>
+    <style>
+        /* Variables de couleur inspirées de ton logo logo (2) - Copie.jpg */
+        :root {
+            --bg-color: #080a14;      /* Bleu très sombre de l'eau profonde */
+            --surface-color: #121625; /* Bleu nuit pour les cartes */
+            --accent-color: #39ff14;  /* Vert flash de ton logo */
+            --accent-cyan: #00f3ff;   /* Cyan du bas de ton logo */
+            --accent-hover: #29cc0e;
+            --text-color: #f5f6f9;
+            --text-muted: #8b95b3;
+            --border-color: #1e263f;
+        }
+
+        /* Styles globaux */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top, #141b34 0%, var(--bg-color) 70%);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* En-tête / Profil */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 24px; /* Coins légèrement arrondis pour coller au style du logo */
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .bio {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Compétences / Outils */
+        .skills-tags {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        /* Grille des Projets */
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-cyan));
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .project-card {
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+        }
+
+        /* Lecteur Vidéo Intégré 16:9 Responsif */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .project-role {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Contact */
+        .contact-section {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 50px 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .contact-section p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), #14d434);
+            color: #000; /* Texte noir pour maximiser le contraste sur le vert flash */
+            font-weight: 700;
+            text-decoration: none;
+            padding: 14px 35px;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(57, 255, 20, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- EN-TÊTE / PROFIL -->
+        <header>
+            <div class="profile-container">
+                <!-- Intégration de ton logo ici -->
+                <img src="logo (2) - Copie.jpg" alt="Logo Evrost" class="profile-img">
+            </div>
+            <h1>Evrost</h1>
+            <div class="subtitle">Monteur Vidéo & Créateur Visuel</div>
+            <p class="bio">
+                Je donne vie à vos idées à travers des montages dynamiques, des transitions fluides et un sound design percutant. Spécialisé dans les formats YouTube, publicitaires et formats courts (Reels/TikTok).
+            </p>
+            
+            <div class="skills-tags">
+                <span class="tag">Premiere Pro</span>
+                <span class="tag">After Effects</span>
+                <span class="tag">DaVinci Resolve</span>
+                <span class="tag">Sound Design</span>
+                <span class="tag">Étalonnage</span>
+            </div>
+        </header>
+
+        <!-- GRILLE DE PROJETS -->
+        <main>
+            <h2>Mes Réalisations</h2>
+            <div class="portfolio-grid">
+                
+                <!-- Projet 1 -->
+                <div class="project-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Vidéo Facecam / YouTube</h3>
+                        <p class="project-desc">Montage rythmé pour un créateur de contenu. Gestion des cuts, insertion de b-rolls et zooms adaptatifs pour maximiser le taux de rétention.</p>
+                        <span class="project-role">Cut • Rythme • Habillage</span>
+                    </div>
+                </div>
+
+                <!-- Projet 2 -->
+                <div class="project-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Publicité / Brand Content</h3>
+                        <p class="project-desc">Création d'un spot publicitaire court pour une marque. Travail poussé sur l'étalonnage des couleurs (color grading) et les transitions invisibles.</p>
+                        <span class="project-role">Étalonnage • Sound Design</span>
+                    </div>
+                </div>
+
+                <!-- Projet 3 -->
+                <div class="project-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Format Court (TikTok / Shorts)</h3>
+                        <p class="project-desc">Montage vertical ultra-dynamique avec sous-titres animés mot à mot, effets sonores (SFX) et pop-ups pour capter l'attention dès la première seconde.</p>
+                        <span class="project-role">Sous-titres • Effets • Shorts</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- SECTION CONTACT -->
+        <section class="contact-section">
+            <h2>Un projet en vue ?</h2>
+            <p>Besoin d'un montage professionnel pour vos vidéos ? Travaillons ensemble !</p>
+            <a href="mailto:ton.email@gmail.com" class="btn">Me contacter par Email</a>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>&copy; 2026 • Evrost Portfolio • Hébergé sur GitHub Pages</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
